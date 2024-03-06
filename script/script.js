@@ -3,7 +3,7 @@ const player = 'paper';
 
 
 function getComputerChoice(){
-    const randomize = Math.floor(Math.random() *2);
+    const randomize = Math.floor(Math.random() *3);
     const choice = comp[randomize];
     console.log(randomize);
     console.log(choice);
