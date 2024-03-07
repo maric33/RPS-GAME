@@ -5,6 +5,16 @@ const buttons = document.querySelectorAll('button');
 let playerScore = 0;
 let computerScore = 0;
 
+const rockBtn = document.querySelector('#rockBtn');
+const paperBtn = document.querySelector('#paperBtn');
+const scissorsBtn = document.querySelector('#scissorsBtn');
+
+rockBtn.addEventListener('click', () => playRound('rock'));
+
+paperBtn.addEventListener('click', () => playRound('paper'));
+
+scissorsBtn.addEventListener('click', () => playRound('scissors'));
+
 // Generate a random computer choice
 function getComputerChoice() {
   const randomIndex = Math.floor(Math.random() * choices.length);
@@ -21,23 +31,22 @@ function playRound(playerChoice) {
   } else if (result === 'computer') {
     computerScore++;
   }
+  console.log('Computer choosen ' + computerChoice,',', result);
+  
 
 }
 
 // Determine the winner of a single round
 function determineWinner(playerChoice, computerChoice) {
   if (playerChoice === computerChoice) {
-        console.log('tie');
-return 'tie';
+return 'It is tie';
   } else if (
     (playerChoice === 'rock' && computerChoice === 'scissors') ||
     (playerChoice === 'scissors' && computerChoice === 'paper') ||
     (playerChoice === 'paper' && computerChoice === 'rock')
   ) {
-  console.log('player wins!');
-    return 'player';
+    return 'Player wins!';
   } else {
-  console.log('computer wins!');
-    return 'computer';
+    return 'Computer wins!';
   }
 }
