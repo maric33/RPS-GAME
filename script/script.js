@@ -1,33 +1,43 @@
-const comp = ['rock', 'paper', 'scissors'];
+'use strict'
 
+const choices = ['rock', 'paper', 'scissors'];
+const buttons = document.querySelectorAll('button');
+let playerScore = 0;
+let computerScore = 0;
 
-function getComputerChoice(){
-    const randomize = Math.floor(Math.random() *3);
-    const choice = comp[randomize];
-    return choice;
-    }
-
-function playGame(getComputerChoice, playerChoice){
-    if (getComputerChoice === playerChoice) {
-        return 'tie';
-    } else if (playerChoice === 'rock' && getComputerChoice === 'scissors' || playerChoice === 'scissors' && getComputerChoice === 'paper' || playerChoice === 'paper' && getComputerChoice ==='rock') {
-        return 'player';
-    } else  {
-        return 'computer';
-    }
+// Generate a random computer choice
+function getComputerChoice() {
+  const randomIndex = Math.floor(Math.random() * choices.length);
+  return choices[randomIndex];
 }
 
-let win = playGame(getComputerChoice(), 'rock');
+// Play a single round of the game
+function playRound(playerChoice) {
+  const computerChoice = getComputerChoice();
+  const result = determineWinner(playerChoice, computerChoice);
 
-function gameResult() {
-    if (win === 'tie'){
-    console.log('Its tie. Nobody Wins'); 
-} else if (win === 'player'){
-    console.log('Player wins!');  
-} else {
-    console.log('Computer wins this time!')
-}
-}
-console.log(win);
-console.log(gameResult());
+  if (result === 'player') {
+    playerScore++;
+  } else if (result === 'computer') {
+    computerScore++;
+  }
 
+}
+
+// Determine the winner of a single round
+function determineWinner(playerChoice, computerChoice) {
+  if (playerChoice === computerChoice) {
+        console.log('tie');
+return 'tie';
+  } else if (
+    (playerChoice === 'rock' && computerChoice === 'scissors') ||
+    (playerChoice === 'scissors' && computerChoice === 'paper') ||
+    (playerChoice === 'paper' && computerChoice === 'rock')
+  ) {
+  console.log('player wins!');
+    return 'player';
+  } else {
+  console.log('computer wins!');
+    return 'computer';
+  }
+}
